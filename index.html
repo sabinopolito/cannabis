@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipologie di Cannabis</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: #f0f4c3;
+            color: #333;
+        }
+
+        header {
+            background: #4caf50;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .search-bar {
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #388e3c;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .search-bar button {
+            padding: 10px;
+            border: 2px solid #388e3c;
+            background-color: #66bb6a;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #388e3c;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 15px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        .strain-details {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <h1>Le specialita della cannabis</h1>
+        <h2 style="font-size: 1.5rem; margin-top: 10px; color: #fff;">Le migliori tipologie!</h2>
+        <nav>
+            <ul>
+                <li><a href="#contatti">Solo per i veri intenditori</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <main>
+        <div class="container text-center">
+            <!-- Barra di ricerca -->
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Cerca una varietà..." onkeydown="checkEnter(event)">
+                <button onclick="filterStrains()">Cerca</button>
+            </div>
+            <div class="row" id="strainContainer">
+                <div class="col-md-6 strain" data-name="Indica">
+                    <div class="card">
+                        <h5 class="card-title">Indica</h5>
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSPtDNy3BhRhGe9ut0gkTHyt9nkC9bdjX3UCHT457d45YhKpf_T" class="card-img-top" alt="Indica Strain">
+                        <p class="card-text">Ideale per il relax e il sollievo dal dolore. Ottima per la sera.</p>
+                        <button class="btn btn-primary" onclick="toggleDetails('indicaDetails')">Dettagli</button>
+                    </div>
+                    <div class="strain-details" id="indicaDetails">
+                        <h5>Dettagli Indica</h5>
+                        <p>Questa varietà è conosciuta per i suoi effetti calmanti e sedativi, perfetta per chi cerca un po' di relax.</p>
+                        <button class="btn btn-secondary" onclick="toggleDetails('indicaDetails')">Chiudi</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Sativa">
+                    <div class="card">
+                        <h5 class="card-title">Sativa</h5>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Cannabis_01_bgiu.jpg" class="card-img-top" alt="Sativa Strain">
+                        <p class="card-text">Stimolante e creativo, ottima per il giorno e attività sociali.</p>
+                        <button class="btn btn-primary" onclick="toggleDetails('sativaDetails')">Dettagli</button>
+                    </div>
+                    <div class="strain-details" id="sativaDetails">
+                        <h5>Dettagli Sativa</h5>
+                        <p>Famosa per i suoi effetti energizzanti e per migliorare l'umore, perfetta per le attività quotidiane.</p>
+                        <button class="btn btn-secondary" onclick="toggleDetails('sativaDetails')">Chiudi</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Ruderalis">
+                    <div class="card">
+                        <h5 class="card-title">Ruderalis</h5>
+                        <img src="https://example.com/ruderalis-strain.jpg" class="card-img-top" alt="Ruderalis Strain">
+                        <p class="card-text">Resistente e adattabile, spesso usata per la produzione di ibridi.</p>
+                        <button class="btn btn-primary" onclick="toggleDetails('ruderalisDetails')">Dettagli</button>
+                    </div>
+                    <div class="strain-details" id="ruderalisDetails">
+                        <h5>Dettagli Ruderalis</h5>
+                        <p>Questa varietà è nota per la sua capacità di adattarsi a climi diversi, rendendola ideale per la coltivazione in varie condizioni.</p>
+                        <button class="btn btn-secondary" onclick="toggleDetails('ruderalisDetails')">Chiudi</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Ibridi">
+                    <div class="card">
+                        <h5 class="card-title">Ibridi</h5>
+                        <img src="https://example.com/hybrid-strain.jpg" class="card-img-top" alt="Hybrid Strain">
+                        <p class="card-text">Combinano le migliori caratteristiche di Indica e Sativa.</p>
+                        <button class="btn btn-primary" onclick="toggleDetails('hybridDetails')">Dettagli</button>
+                    </div>
+                    <div class="strain-details" id="hybridDetails">
+                        <h5>Dettagli Ibridi</h5>
+                        <p>Queste varietà offrono un equilibrio tra gli effetti di Indica e Sativa, rendendole versatili per ogni occasione.</p>
+                        <button class="btn btn-secondary" onclick="toggleDetails('hybridDetails')">Chiudi</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="CBD">
+                    <div class="card">
+                        <h5 class="card-title">CBD</h5>
+                        <img src="https://example.com/cbd-strain.jpg" class="card-img-top" alt="CBD Strain">
+                        <p class="card-text">Ricca di cannabidiolo, ideale per il sollievo senza effetti psicoattivi.</p>
+                        <button class="btn btn-primary" onclick="toggleDetails('cbdDetails')">Dettagli</button>
+                    </div>
+                    <div class="strain-details" id="cbdDetails">
+                        <h5>Dettagli CBD</h5>
+                        <p>Questa varietà è nota per le sue proprietà terapeutiche e il basso contenuto di THC, rendendola perfetta per chi cerca sollievo senza alterazioni.</p>
+                        <button class="btn btn-secondary" onclick="toggleDetails('cbdDetails')">Chiudi</button>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="THC">
+                    <div class="card">
+                        <h5 class="card-title">THC</h5>
+                        <img src="https://example.com/thc-strain.jpg" class="card-img-top" alt="THC Strain">
+                        <p class="card-text">Ricca di tetraidrocannabinolo, nota per i suoi effetti psicoattivi.</p>
+                        <button class="btn btn-primary" onclick="toggleDetails('thcDetails')">Dettagli</button>
+                    </div>
+                    <div class="strain-details" id="thcDetails">
+                        <h5>Dettagli THC</h5>
+                        <p>Con un alto contenuto di THC, questa varietà è apprezzata per i suoi effetti intensi e ricreativi.</p>
+                        <button class="btn btn-secondary" onclick="toggleDetails('thcDetails')">Chiudi</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tipologie di Cannabis. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function filterStrains() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const strains = document.querySelectorAll('.strain');
+
+            strains.forEach(strain => {
+                const strainName = strain.getAttribute('data-name').toLowerCase();
+                if (strainName.includes(filter)) {
+                    strain.style.display = 'block';
+                } else {
+                    strain.style.display = 'none';
+                }
+            });
+        }
+
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                filterStrains();
+            }
+        }
+    </script>
+</body>
+
+</html>
