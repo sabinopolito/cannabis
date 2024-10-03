@@ -56,19 +56,12 @@
             padding: 10px;
             border: 2px solid #388e3c;
             border-radius: 5px 0 0 5px;
+            transition: border-color 0.3s;
         }
 
-        .search-bar button {
-            padding: 10px;
-            border: 2px solid #388e3c;
-            background-color: #66bb6a;
-            color: white;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-        }
-
-        .search-bar button:hover {
-            background-color: #388e3c;
+        .search-bar input:focus {
+            border-color: #66bb6a;
+            outline: none;
         }
 
         .card {
@@ -82,6 +75,18 @@
 
         .card:hover {
             transform: scale(1.02);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card-img-top:hover {
+            transform: scale(1.05);
         }
 
         footer {
@@ -106,7 +111,7 @@
 
 <body>
     <header>
-        <h1>Le specialita della cannabis</h1>
+        <h1>Le Specialità della Cannabis</h1>
         <h2 style="font-size: 1.5rem; margin-top: 10px; color: #fff;">Le migliori tipologie!</h2>
         <nav>
             <ul>
@@ -114,100 +119,157 @@
             </ul>
         </nav>
     </header>
-    
 
     <main>
         <div class="container text-center">
-            <!-- Barra di ricerca -->
             <div class="search-bar">
-                <input type="text" id="searchInput" placeholder="Cerca una varietà..." onkeydown="checkEnter(event)">
-                <button onclick="filterStrains()">Cerca</button>
+                <input type="text" id="searchInput" placeholder="Cerca una varietà..." oninput="filterStrains()">
             </div>
             <div class="row" id="strainContainer">
                 <div class="col-md-6 strain" data-name="Indica">
                     <div class="card">
                         <h5 class="card-title">Indica</h5>
-                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSPtDNy3BhRhGe9ut0gkTHyt9nkC9bdjX3UCHT457d45YhKpf_T" class="card-img-top" alt="Indica Strain">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSPtDNy3BhRhGe9ut0gkTHyt9nkC9bdjX3UCHT457d45YhKpf_T" class="card-img-top" alt="Indica Strain" onclick="toggleDetails('indicaDetails')">
                         <p class="card-text">Ideale per il relax e il sollievo dal dolore. Ottima per la sera.</p>
-                        <button class="btn btn-primary" onclick="toggleDetails('indicaDetails')">Dettagli</button>
                     </div>
                     <div class="strain-details" id="indicaDetails">
                         <h5>Dettagli Indica</h5>
                         <p>Questa varietà è conosciuta per i suoi effetti calmanti e sedativi, perfetta per chi cerca un po' di relax.</p>
-                        <button class="btn btn-secondary" onclick="toggleDetails('indicaDetails')">Chiudi</button>
                     </div>
                 </div>
 
                 <div class="col-md-6 strain" data-name="Sativa">
                     <div class="card">
                         <h5 class="card-title">Sativa</h5>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Cannabis_01_bgiu.jpg" class="card-img-top" alt="Sativa Strain">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/26/Cannabis_01_bgiu.jpg" class="card-img-top" alt="Sativa Strain" onclick="toggleDetails('sativaDetails')">
                         <p class="card-text">Stimolante e creativo, ottima per il giorno e attività sociali.</p>
-                        <button class="btn btn-primary" onclick="toggleDetails('sativaDetails')">Dettagli</button>
                     </div>
                     <div class="strain-details" id="sativaDetails">
                         <h5>Dettagli Sativa</h5>
                         <p>Famosa per i suoi effetti energizzanti e per migliorare l'umore, perfetta per le attività quotidiane.</p>
-                        <button class="btn btn-secondary" onclick="toggleDetails('sativaDetails')">Chiudi</button>
                     </div>
                 </div>
 
                 <div class="col-md-6 strain" data-name="Ruderalis">
                     <div class="card">
                         <h5 class="card-title">Ruderalis</h5>
-                        <img src="https://example.com/ruderalis-strain.jpg" class="card-img-top" alt="Ruderalis Strain">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTHnV6y4Uk75hAllOgqUpC1Z2EWqTwrgSPsJB42I5gOIuw1_HiP" class="card-img-top" alt="Ruderalis Strain" onclick="toggleDetails('ruderalisDetails')">
                         <p class="card-text">Resistente e adattabile, spesso usata per la produzione di ibridi.</p>
-                        <button class="btn btn-primary" onclick="toggleDetails('ruderalisDetails')">Dettagli</button>
                     </div>
                     <div class="strain-details" id="ruderalisDetails">
                         <h5>Dettagli Ruderalis</h5>
                         <p>Questa varietà è nota per la sua capacità di adattarsi a climi diversi, rendendola ideale per la coltivazione in varie condizioni.</p>
-                        <button class="btn btn-secondary" onclick="toggleDetails('ruderalisDetails')">Chiudi</button>
                     </div>
                 </div>
 
                 <div class="col-md-6 strain" data-name="Ibridi">
                     <div class="card">
                         <h5 class="card-title">Ibridi</h5>
-                        <img src="https://example.com/hybrid-strain.jpg" class="card-img-top" alt="Hybrid Strain">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcdU_Qm_zGVNEU6VXpnGKDOVH4mSaIscu3_A&s" class="card-img-top" alt="Hybrid Strain" onclick="toggleDetails('hybridDetails')">
                         <p class="card-text">Combinano le migliori caratteristiche di Indica e Sativa.</p>
-                        <button class="btn btn-primary" onclick="toggleDetails('hybridDetails')">Dettagli</button>
                     </div>
                     <div class="strain-details" id="hybridDetails">
                         <h5>Dettagli Ibridi</h5>
                         <p>Queste varietà offrono un equilibrio tra gli effetti di Indica e Sativa, rendendole versatili per ogni occasione.</p>
-                        <button class="btn btn-secondary" onclick="toggleDetails('hybridDetails')">Chiudi</button>
                     </div>
                 </div>
 
                 <div class="col-md-6 strain" data-name="CBD">
                     <div class="card">
                         <h5 class="card-title">CBD</h5>
-                        <img src="https://example.com/cbd-strain.jpg" class="card-img-top" alt="CBD Strain">
+                        <img src="https://www.justbob.it/wp-content/uploads/2018/10/mango-cbd-boost-cannabis-light-1.jpg" class="card-img-top" alt="CBD Strain" onclick="toggleDetails('cbdDetails')">
                         <p class="card-text">Ricca di cannabidiolo, ideale per il sollievo senza effetti psicoattivi.</p>
-                        <button class="btn btn-primary" onclick="toggleDetails('cbdDetails')">Dettagli</button>
                     </div>
                     <div class="strain-details" id="cbdDetails">
                         <h5>Dettagli CBD</h5>
                         <p>Questa varietà è nota per le sue proprietà terapeutiche e il basso contenuto di THC, rendendola perfetta per chi cerca sollievo senza alterazioni.</p>
-                        <button class="btn btn-secondary" onclick="toggleDetails('cbdDetails')">Chiudi</button>
                     </div>
                 </div>
 
                 <div class="col-md-6 strain" data-name="THC">
                     <div class="card">
                         <h5 class="card-title">THC</h5>
-                        <img src="https://example.com/thc-strain.jpg" class="card-img-top" alt="THC Strain">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcT-0NGTi8rfJzPxjPPPX9c5DPQFMbStIGu75w&s" class="card-img-top" alt="THC Strain" onclick="toggleDetails('thcDetails')">
                         <p class="card-text">Ricca di tetraidrocannabinolo, nota per i suoi effetti psicoattivi.</p>
-                        <button class="btn btn-primary" onclick="toggleDetails('thcDetails')">Dettagli</button>
                     </div>
                     <div class="strain-details" id="thcDetails">
                         <h5>Dettagli THC</h5>
                         <p>Con un alto contenuto di THC, questa varietà è apprezzata per i suoi effetti intensi e ricreativi.</p>
-                        <button class="btn btn-secondary" onclick="toggleDetails('thcDetails')">Chiudi</button>
                     </div>
                 </div>
 
+                <!-- Nuove varietà aggiunte -->
+                <div class="col-md-6 strain" data-name="Afghani">
+                    <div class="card">
+                        <h5 class="card-title">Afghani</h5>
+                        <img src="https://img.sensiseeds.com/images/thumbs/0000414_afghani-1-feminized-seeds_800.png" class="card-img-top" alt="Afghani Strain" onclick="toggleDetails('afghaniDetails')">
+                        <p class="card-text">Una varietà storica, nota per i suoi effetti rilassanti e terrosi.</p>
+                    </div>
+                    <div class="strain-details" id="afghaniDetails">
+                        <h5>Dettagli Afghani</h5>
+                        <p>Questa varietà è conosciuta per il suo profilo aromatico ricco e i suoi effetti calmanti, perfetta per la meditazione.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Purple Haze">
+                    <div class="card">
+                        <h5 class="card-title">Purple Haze</h5>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoHwP6KrWoUUgVtTFczVnRxY3x8Es5wH64Aw&s" class="card-img-top" alt="Purple Haze Strain" onclick="toggleDetails('purpleHazeDetails')">
+                        <p class="card-text">Caratterizzata da un sapore dolce e fruttato, stimola la creatività.</p>
+                    </div>
+                    <div class="strain-details" id="purpleHazeDetails">
+                        <h5>Dettagli Purple Haze</h5>
+                        <p>Questa varietà è celebre per i suoi colori viola e i suoi effetti euforici, perfetta per stimolare la creatività.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="OG Kush">
+                    <div class="card">
+                        <h5 class="card-title">OG Kush</h5>
+                        <img src="https://www.barneysfarm.com/images/products/og-kush_1_789059.jpg" class="card-img-top" alt="OG Kush Strain" onclick="toggleDetails('ogKushDetails')">
+                        <p class="card-text">Una delle varietà più popolari, conosciuta per il suo profilo aromatico unico.</p>
+                    </div>
+                    <div class="strain-details" id="ogKushDetails">
+                        <h5>Dettagli OG Kush</h5>
+                        <p>Questa varietà è apprezzata per i suoi effetti potenti e il suo aroma distintivo, spesso descritto come terroso e citrico.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Girl Scout Cookies">
+                    <div class="card">
+                        <h5 class="card-title">Girl Scout Cookies</h5>
+                        <img src="https://seedsline.com/wp-content/uploads/2019/07/girl_v3.jpg" class="card-img-top" alt="Girl Scout Cookies Strain" onclick="toggleDetails('gscDetails')">
+                        <p class="card-text">Una varietà dolce e cremosa, perfetta per un relax piacevole.</p>
+                    </div>
+                    <div class="strain-details" id="gscDetails">
+                        <h5>Dettagli Girl Scout Cookies</h5>
+                        <p>Famosa per il suo sapore dolce e il suo effetto equilibrato, è molto popolare tra i consumatori.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Lemon Haze">
+                    <div class="card">
+                        <h5 class="card-title">Lemon Haze</h5>
+                        <img src="https://www.justbob.it/wp-content/uploads/2019/08/lemon_haze_marijuana_light.jpg" class="card-img-top" alt="Lemon Haze Strain" onclick="toggleDetails('lemonHazeDetails')">
+                        <p class="card-text">Fresca e agrumata, stimola l'umore e la creatività.</p>
+                    </div>
+                    <div class="strain-details" id="lemonHazeDetails">
+                        <h5>Dettagli Lemon Haze</h5>
+                        <p>Questa varietà è nota per il suo aroma agrumato e i suoi effetti energizzanti, perfetta per le giornate soleggiate.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 strain" data-name="Bubba Kush">
+                    <div class="card">
+                        <h5 class="card-title">Bubba Kush</h5>
+                        <img src="https://fernvalleyfarms.com/wp-content/uploads/2023/03/d8-bubba-kush-trimmed.webp" class="card-img-top" alt="Bubba Kush Strain" onclick="toggleDetails('bubbaKushDetails')">
+                        <p class="card-text">Rilassante e terrosa, ideale per la sera.</p>
+                    </div>
+                    <div class="strain-details" id="bubbaKushDetails">
+                        <h5>Dettagli Bubba Kush</h5>
+                        <p>Questa varietà è conosciuta per i suoi effetti calmanti e il suo profilo aromatico ricco e terroso.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -225,23 +287,13 @@
 
         function filterStrains() {
             const input = document.getElementById('searchInput');
-            const filter = input.value.toLowerCase();
+            const filter = input.value.toLowerCase().trim();
             const strains = document.querySelectorAll('.strain');
 
             strains.forEach(strain => {
                 const strainName = strain.getAttribute('data-name').toLowerCase();
-                if (strainName.includes(filter)) {
-                    strain.style.display = 'block';
-                } else {
-                    strain.style.display = 'none';
-                }
+                strain.style.display = strainName.startsWith(filter) ? 'block' : 'none';
             });
-        }
-
-        function checkEnter(event) {
-            if (event.key === 'Enter') {
-                filterStrains();
-            }
         }
     </script>
 </body>
